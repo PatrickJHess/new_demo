@@ -1,0 +1,2725 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pandas &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'An_Introduction_To_Pandas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My sample book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><em><strong>Pandas</strong></em></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/PatrickJHess/demo_book/main?urlpath=tree/An_Introduction_To_Pandas.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PatrickJHess/demo_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PatrickJHess/demo_book/issues/new?title=Issue%20on%20page%20%2FAn_Introduction_To_Pandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/An_Introduction_To_Pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dataframe-reminiscent-of-a-spreadsheet-is-the-primary-object-in-pandas-data-is-organized-into-tables-with-columns-and-rows-that-can-be-manipulated-similar-to-a-spreadsheet-depending-on-your-notebook-you-may-need-to-install-pandas-before-importing-it">A DataFrame, reminiscent of a spreadsheet, is the primary object in Pandas. Data is organized into tables with columns and rows, that can be manipulated similar to a spreadsheet. Depending on your notebook, you may need to install Pandas before importing it.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-code-cell-below-uses-a-try-and-except-code-block-to-import-pandas-and-assigns-it-the-common-alias-pd-1">The example code cell below uses a <font color="green">try</font> and <font color="green">except</font> code block to import Pandas and assigns<br/> it the common alias <font color="green">pd</font>.<span class="math notranslate nohighlight">\(^{1}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-try-and-except-code-blocks-the-notebook-control-statements-in-the-library"><span class="math notranslate nohighlight">\(^{1}\)</span> An introduction to <font color="green">try</font> and <font color="green">except</font> code blocks <a href="https://colab.research.google.com/drive/1_U6FtHZjbjMtBRYrULipP2jnwKis4qgM?usp=sharing">The Notebook Control Statements In The Library</a></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-or-instantiating-a-dataframe"><em><strong>Creating Or Instantiating A DataFrame</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-bare-bones-dataframe"><em><strong>A Bare Bones DataFrame</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-pandas-method-demonstrated-is-dataframe-the-required-arguments-of-the-method-are-the-data-that-must-be-an-iterable-e-g-a-list-or-a-dictionary-2-here-the-dataframe-df-bare-bones-is-created-with-two-simple-lists-x-and-y">The first Pandas method demonstrated is <font color="green">DataFrame()</font>.  The required arguments of the method are<br/> the data that must be an iterable: e.g. a list or a dictionary.<span class="math notranslate nohighlight">\(^{2}\)</span>  Here the DataFrame <font color="green">df_bare_bones</font> is <br/>created with two simple lists: <font color="green">x</font> and <font color="green">y</font>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#if-you-need-a-little-help-with-this-concept-check-out-the-notebooks-lists-or-dictionaires"><span class="math notranslate nohighlight">\(^{1.}\)</span> If you need a little help with this concept check out the notebooks Lists or Dictionaires</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-labels-for-columns-and-rows"><em><strong>Adding Labels For Columns And Rows</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-bare-bones-is-a-table-but-it-s-not-very-useful-the-first-improvement-is-to-provide-labels-for-the-columns-and-the-rows-both-are-attributes-of-df-bare-bones-and-the-values-have-been-assigned-by-pandas-the-column-attribute-is-referred-to-as-columns-and-the-row-attribute-as-index-as-with-all-objects-these-attributes-can-be-accessed-using-a-dot-after-the-object-s-name-in-this-case-the-columns-attribute-is-assigned-the-list-first-second-third-and-the-rows-attribute-is-assigned-the-list-x-y"><font color="green">df_bare_bones</font> is a table, but it’s not very useful.  The first improvement is to provide labels for the<br/> columns and the rows.  Both are attributes of <font color="green">df_bare_bones</font> and the values have been<br/> assigned by Pandas.  The column attribute is referred to as <font color="green">columns</font> and the row attribute<br/> as <font color="green">index</font>. As with all objects, these attributes can be accessed using a dot after the<br/> object’s name. In this case, the <font color="green">columns</font> attribute is assigned the list <font color="green">[‘First’, ‘Second’, ‘Third’]</font>,<br/> and the <font color="green">rows</font> attribute is assigned the list <font color="green">[‘x’, ‘y’]</font>.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#including-the-labels-as-arguments-of-dataframe"><em><strong>Including The Labels As Arguments Of DataFrame()</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#here-the-values-assigned-to-the-columns-and-index-attributes-are-arguments-of-the-method-because-the-attributes-are-not-variables-of-the-notebook-the-names-assigned-may-be-the-same-as-the-attributes">Here the values assigned to the <font color="green">columns</font> and <font color="green">index</font> attributes are arguments of the method.<br/>  Because the attributes are not variables of the notebook, the names assigned may be the<br/> same as the attributes.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-through-the-columns-and-index"><em><strong>Iterating Through The Columns And Index</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-values-of-rows-and-columns-can-be-accessed-by-iterating-through-a-dataframe-s-columns-or-index-here-the-values-of-the-labels-of-columns-and-index-are-printed">The values of rows and columns can be accessed by iterating through a DataFrame’s <font color="green">columns</font><br/> or <font color="green">index</font>.  Here the values of the labels of <font color="green">columns</font> and <font color="green">index</font> are printed.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-loc-and-iloc-attributes"><em><strong>The loc and iloc Attributes</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-row-of-a-dataframe-is-identified-with-the-loc-or-iloc-attribute-the-loc-attribute-uses-the-value-of-the-index-in-our-example-x-or-y-the-iloc-attribute-uses-the-location-of-the-row-in-the-index-in-our-example-0-or-1">A row of A DataFrame is identified with the <font color="green">loc</font> or <font color="green">iloc</font> attribute.  The <font color="green">loc</font> attribute uses<br/> the value of the <font color="green">index</font>; in our example ‘x’ or ‘y’.  The <font color="green">iloc</font> attribute uses the location of the row<br/> in the <font color="green">index</font>; in our example, 0 or 1.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-the-next-code-cell-the-values-of-first-column-are-printed-by-iterating-through-the-index-with-loc">In the next code cell the values of ‘First’ column are printed by iterating through the index with loc.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loc-attribute"><em><strong>loc Attribute</strong></em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iloc-example-uses-the-index-values-of-0-and-1-to-print-the-value-of-second-column-the-iloc-attribute-requires-the-enumerate-function-of-python-that-keeps-track-of-the-number-of-iterations-3-the-row-is-then-fixed-with-loc-and-the-columns-are-iterated-through-to-show-all-the-values-of-the-list-x">The <font color="green">iloc</font> example uses the <font color="green">index</font> values of 0 and 1 to print the value of ‘Second’ column.<br/>  The <font color="green">iloc</font> attribute requires the <font color="green">enumerate</font> function of Python that keeps track of the number<br/> of iterations.<span class="math notranslate nohighlight">\(^{3}\)</span>  The row is then fixed with <font color="green">loc</font> and the columns are iterated through to show all<br/> the values of the list <font color="green">x</font>.</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gemini-provides-a-nice-explanation-of-the-enumerate-function"><span class="math notranslate nohighlight">\(^{3.}\)</span> Gemini provides a nice explanation of the <font color="green">enumerate</font> function.</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-attribute"><em><strong>iloc Attribute</strong></em></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-a-row-with-an-index-value"><em><strong>Locate A Row With An Index Value</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-get-indexer-method-locates-the-row-number-of-the-index-from-a-value-if-the-label-is-not-present-minus-one-is-returned-the-value-must-be-an-iterable-here-it-is-a-list">The <font color="green">get_indexer()</font> method locates the row number of the <font color="green">index</font> from a value.  If the label is not present, minus one is returned. The value must be an iterable.  Here it is a list.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-the-row-with-loc-and-iterating-through-the-columns"><em><strong>Fixing The Row With <font color="green">loc</font> And Iterating Through The Columns.</strong></em></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dataframe-from-a-dictionary"><em><strong>Create A DataFrame From A Dictionary</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#it-s-convenient-to-create-a-dataframe-from-a-dictionary-dictionaries-are-key-value-pairs-4-the-keys-are-interpreted-as-column-names-and-the-values-are-the-data-assigned-to-those-columns-in-this-example-the-value-of-x-and-value-of-y-columns-are-assigned-the-lists-x-and-y-respectively">It’s convenient to create a DataFrame from a dictionary.  Dictionaries are key-value pairs.<span class="math notranslate nohighlight">\(^{4}\)</span><br/> The keys are interpreted as column names, and the values are the data assigned to those columns.<br/> In this example, the ‘Value Of X’ and ‘Value Of Y’ columns are assigned the lists <font color="green">x</font> and <font color="green">y</font>, respectively.</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#for-an-introduction-to-dictionaries-see-dictionaries-notebook"><span class="math notranslate nohighlight">\(^{4}\)</span> For an introduction to dictionaries see <a href="https://colab.research.google.com/drive/1xGcImigTwgiAlYBHdHG44KH3i3IS6Prr?usp=sharing">Dictionaries Notebook</a>.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-column"><em><strong>Add A Column</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assign-a-list-to-the-new-column-values-of-z"><em><strong>Assign A List To The New Column ‘Values of z’</strong></em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assign-three-plus-the-column-values-of-y-to-the-new-column-values-of-z"><em><strong>Assign Three Plus The Column ‘Values of y’ To The New Column ‘Values of z’</strong></em></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-transpose"><em><strong>The Transpose</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#because-the-dataframe-method-interprets-the-dictionary-keys-as-column-names-df-dict-is-the-transpose-of-df-bare-bones-to-that-end-the-index-of-df-dict-is-assigned-the-columns-list-that-was-assigned-as-the-columns-of-df-bare-bones-the-pandas-method-transpose-transposes-a-dataframe-but-does-not-replace-the-values-to-keep-the-transposed-dataframe-it-must-be-assigned-to-another-variable-the-transpose-method-may-also-be-accessed-with-a-capital-t">Because the <font color="green">DataFrame()</font> method interprets the dictionary keys as column names, <font color="green">df_dict</font><br/> is the transpose of <font color="green">df_bare_bones</font>.  To that end, the index of <font color="green">df_dict</font> is assigned the <font color="green">columns</font><br/> list that was assigned as the <font color="green">columns</font> of <font color="green">df_bare_bones</font>.  The Pandas method <font color="green">transpose()</font><br/> transposes a DataFrame but does not replace the values.  To keep the transposed <font color="green">DataFrame</font><br/> it must be assigned to another variable. The <font color="green">transpose</font> method may also be accessed with a capital <font color="green">T</font>.</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#transpose-with-method-transpose-t-for-shorthand"><em><strong>Transpose With Method <font color="green">transpose()</font>, <font color="green">T</font> For Shorthand.</strong></em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes-csv-and-excel-files"><em><strong>DataFrames, CSV, And Excel Files</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe-with-a-csv-file"><em><strong>Creating A DataFrame With A CSV File</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-notebooks-contain-sample-data-within-the-sample-data-folder-in-this-instance-the-data-from-the-csv-file-california-housing-train-csv-is-transformed-into-a-dataframe-using-the-pandas-read-csv-method-the-sole-necessary-argument-for-this-method-is-the-file-path-from-dropbox">Colab notebooks contain sample data within the ‘sample_data’ folder. In this instance,<br/> the data from the csv file ‘california_housing_train.csv’ is transformed into a DataFrame<br/> using the Pandas <font color="green">read_csv()</font> method. The sole necessary argument for this method is<br/> the file path from DropBox.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-file-is-then-assigned-to-df-csv-and-the-initial-ten-rows-are-displayed-by-slicing-the-index-using-the-iloc-attribute">The file is then assigned to <font color="green">df_csv</font>, and the initial ten rows are displayed by slicing the <font color="green">index</font><br/> using the <font color="green">iloc</font> attribute..</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The file is then assigned to <font color="green">df_csv</font>, and the initial ten rows are displayed by slicing the <font color="green">index</font><br/> using the <font color="green">iloc</font> attribute.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-excel-file-from-a-dataframe-and-back-to-a-dataframe"><em><strong>Creating An Excel File From A DataFrame And Back To A DataFrame</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-to-excel-method-converts-a-dataframe-into-an-excel-file-this-example-uses-the-required-argument-file-path-and-specifies-the-file-name-as-sample-xlsx-the-file-will-be-located-in-the-notebook-s-root-directory-contents-additionally-the-optional-arguments-sheet-name-and-index-are-used-the-sheet-name-is-assigned-first-sheet-and-the-index-is-set-to-false-preventing-the-df-csv-index-from-being-included-in-first-sheet-the-resulting-excel-file-is-then-converted-back-into-a-dataframe-df-excel-and-the-first-ten-rows-are-displayed-by-slicing-without-using-iloc-the-results-are-identical-to-df-csv">The <font color="green">to_excel()</font> method converts a DataFrame into an Excel file. This example uses the<br/> required argument file path, and specifies the file name as <font color="green">sample.xlsx</font>. The file will be<br/> located in the notebook’s root directory ‘/contents.’ Additionally, the optional arguments<br/> <font color="green">sheet_name</font> and <font color="green">index</font> are used. The <font color="green">sheet_name</font> is assigned ‘First Sheet,’ and the <font color="green">index</font><br/> is set to False, preventing the <font color="green">df_csv</font> index from being included in ‘First Sheet.’ The resulting<br/> Excel file is then converted back into a DataFrame (<font color="green">df_excel</font>), and the first ten rows are<br/> displayed by slicing without using <font color="green">iloc</font>.  The results are identical to <font color="green">df_csv</font>.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-column-the-index"><em><strong>Making A Column The Index</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-set-index-method-makes-a-column-an-index-one-of-the-arguments-of-the-method-is-inplace-that-defaults-to-false-if-assigned-true-the-dataframe-is-permanently-changed-here-it-is-assigned-to-a-new-dataframe">The <font color="green">set_index()</font> method makes a column an index. One of the arguments of the method<br/> is <font color="green">inplace</font> that defaults to False.  If assigned True, the DataFrame is permanently changed.<br/>  Here it is assigned to a new DataFrame.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-to-numpy"><em><strong>Pandas To Numpy</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-method-to-numpy-converts-a-dataframe-to-a-numpy-array-all-values-of-the-dataframe-are-converted-to-a-single-type-unlike-dataframes-numpy-arrays-are-not-indexed-the-value-for-the-114-56-latitude-is-accessed-with-the-iloc-attribute">The method <font color="green">to_numpy()</font> converts a DataFrame to a NumPy array. All values of the DataFrame are converted to a single type.  Unlike DataFrames, NumPy arrays are not indexed. The value for the -114.56 latitude is accessed with the <font color="green">iloc</font> attribute.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-apply-method"><em><strong>The apply() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-apply-function-in-pandas-is-a-versatile-method-used-to-apply-a-function-along-an-axis-of-a-dataframe-or-to-the-values-of-a-series-it-enables-element-wise-row-wise-or-column-wise-operations-using-custom-or-built-in-functions-avoiding-iterating-through-rows-or-columns">The <font color="green">apply()</font> function in Pandas is a versatile method used to apply a function along an axis of a DataFrame or to the values of a Series. It enables element-wise, row-wise, or column-wise operations using custom or built-in functions avoiding iterating through rows or columns.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-average-bedrooms-function-calculates-the-average-number-of-bedrooms-from-the-total-number-of-bedrooms-and-households">The <font color="green">average_bedrooms()</font> function calculates the average number of bedrooms from the total number of bedrooms and households.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-bedrooms-is-applied-to-each-longitude-row-of-the-dataframe-df-excel-new-using-the-anonymous-lambda-function-allows-the-assignment-of-values-in-each-row-as-arguments-of-the-function-5"><font color="green">average_bedrooms()</font> is applied to each longitude (row) of the DataFrame <font color="green">df_excel_new</font>. Using the anonymous lambda function allows the assignment of values in each row as arguments of the function.<span class="math notranslate nohighlight">\(^{5}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-example-the-apply-method-has-the-same-effects-as-direct-operation-on-the-columns">In this example, the <font color="green">apply()</font> method has the same effects as direct operation on the columns.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-a-discussion-of-lambda-functions-see-functions"><span class="math notranslate nohighlight">\(^{5}\)</span> For a discussion of lambda functions see <a href="https://colab.research.google.com/drive/125oeGZS-dlF4namW00LLREKElsr9dxsb?usp=drive_link"> Functions</a>.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iterrows-method"><em><strong>The iterrows() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iterrows-method-of-pandas-iterates-over-the-rows-of-a-dataframe-and-returns-a-tuple-of-the-row-s-values-the-example">The <font color="green">iterrows()</font> method of Pandas iterates over the rows of a DataFrame and returns a tuple of the row’s values.  The example:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displays-the-longitude-amd-the-latitude-of-the-first-five-rows-as-a-list-of-tuples-the-index-is-assigned-to-longitude-and-latitudge-to-the-latitude-column-of-df-excel-new-index-the-list-longitude-latitude-is-created-with-list-comprehension-of-the-two-values">Displays the longitude amd the latitude of the first five rows as a list of tuples.  The index is assigned to longitude and latitudge to the ‘latitude’ column of <font color="green">df_excel_new_index</font>.  The list <font color="green">longitude_latitude</font> is created with list comprehension of the two values.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-to-timestamp-method"><em><strong>Pandas To Timestamp() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pandas-timestamp-is-the-pandas-equivalent-of-datetime-and-includes-some-useful-attributes-the-example-converts-a-datetime-to-a-timestamp-and-printing-both-values-and-several-attributes-of-pandas-timestamp-6">The Pandas <font color="green">Timestamp()</font> is the Pandas equivalent of <font color="green">datetime</font> and includes some useful attributes.  The example converts a <font color="green">datetime</font> to a <font color="green">Timestamp</font> and printing both values and several attributes of Pandas <font color="green">Timestamp()</font>.<span class="math notranslate nohighlight">\(^{6}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-introduction-to-the-datetime-module-see-manipulating-dates">$^{6} For introduction to the datetime module see <a href="https://colab.research.google.com/drive/1ebkxsEmh7S0LgH3HUjF6vwy59sxbRcIk?usp=drive_link">Manipulating Dates</a>.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-duplicated-method"><em><strong>Pandas duplicated() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicated-rows-of-a-dataframe-or-values-of-a-series-can-be-determined-with-the-duplicated-method-by-default-the-first-occurence-of-a-duplicated-value-is-marked-as-false-and-all-others-are-marked-as-true-here-the-method-is-applied-to-the-index-of-the-first-ten-rows-of-df-excel-new-index">Duplicated rows of a DataFrame or values of a Series can be determined with the <font color="green">duplicated()</font> method.  By default the first occurence of a duplicated value is marked as False and all others are marked as True.  Here the method is applied to the index of the first ten rows of <font color="green">df_excel_new_index</font>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negate-a-pandas-value-with"><em><strong>Negate A Pandas Value With ~</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-you-want-to-only-keep-unique-values-it-makes-sense-to-negate-the-values-returned-from-duplicated">If you want to only keep unique values, it makes sense to negate the values returned from <font color="green">duplicated()</font>.</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <img src='https://docs.google.com/drawings/d/e/2PACX-1vQCLdzfcNWNyQa8poL9IszNfgvM8VB93eblATcEjTgrc6MJTFTncZKsUJ5LmU_GxFgmpOsPYxEzEJGj/pub?w=960&h=720'><section class="tex2jax_ignore mathjax_ignore" id="pandas">
+<h1><em><strong>Pandas</strong></em><a class="headerlink" href="#pandas" title="Link to this heading">#</a></h1>
+<section id="a-dataframe-reminiscent-of-a-spreadsheet-is-the-primary-object-in-pandas-data-is-organized-into-tables-with-columns-and-rows-that-can-be-manipulated-similar-to-a-spreadsheet-depending-on-your-notebook-you-may-need-to-install-pandas-before-importing-it">
+<h2>A DataFrame, reminiscent of a spreadsheet, is the primary object in Pandas. Data is organized into tables with columns and rows, that can be manipulated similar to a spreadsheet. Depending on your notebook, you may need to install Pandas before importing it.<a class="headerlink" href="#a-dataframe-reminiscent-of-a-spreadsheet-is-the-primary-object-in-pandas-data-is-organized-into-tables-with-columns-and-rows-that-can-be-manipulated-similar-to-a-spreadsheet-depending-on-your-notebook-you-may-need-to-install-pandas-before-importing-it" title="Link to this heading">#</a></h2>
+</section>
+<section id="the-example-code-cell-below-uses-a-try-and-except-code-block-to-import-pandas-and-assigns-it-the-common-alias-pd-1">
+<h2>The example code cell below uses a <font color='green'>try</font> and <font color='green'>except</font> code block to import Pandas and assigns<br> it the common alias <font color='green'>pd</font>.<span class="math notranslate nohighlight">\(^{1}\)</span><a class="headerlink" href="#the-example-code-cell-below-uses-a-try-and-except-code-block-to-import-pandas-and-assigns-it-the-common-alias-pd-1" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="an-introduction-to-try-and-except-code-blocks-the-notebook-control-statements-in-the-library">
+<h3><span class="math notranslate nohighlight">\(^{1}\)</span> An introduction to <font color='green'>try</font> and <font color='green'>except</font> code blocks <a href='https://colab.research.google.com/drive/1_U6FtHZjbjMtBRYrULipP2jnwKis4qgM?usp=sharing'>The Notebook Control Statements In The Library</a><a class="headerlink" href="#an-introduction-to-try-and-except-code-blocks-the-notebook-control-statements-in-the-library" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pandas
+  <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="creating-or-instantiating-a-dataframe">
+<h2><em><strong>Creating Or Instantiating A DataFrame</strong></em><a class="headerlink" href="#creating-or-instantiating-a-dataframe" title="Link to this heading">#</a></h2>
+<section id="a-bare-bones-dataframe">
+<h3><em><strong>A Bare Bones DataFrame</strong></em><a class="headerlink" href="#a-bare-bones-dataframe" title="Link to this heading">#</a></h3>
+<section id="the-first-pandas-method-demonstrated-is-dataframe-the-required-arguments-of-the-method-are-the-data-that-must-be-an-iterable-e-g-a-list-or-a-dictionary-2-here-the-dataframe-df-bare-bones-is-created-with-two-simple-lists-x-and-y">
+<h4>The first Pandas method demonstrated is <font color='green'>DataFrame()</font>.  The required arguments of the method are<br> the data that must be an iterable: e.g. a list or a dictionary.<span class="math notranslate nohighlight">\(^{2}\)</span>  Here the DataFrame <font color='green'>df_bare_bones</font> is <br>created with two simple lists: <font color='green'>x</font> and <font color='green'>y</font>.<a class="headerlink" href="#the-first-pandas-method-demonstrated-is-dataframe-the-required-arguments-of-the-method-are-the-data-that-must-be-an-iterable-e-g-a-list-or-a-dictionary-2-here-the-dataframe-df-bare-bones-is-created-with-two-simple-lists-x-and-y" title="Link to this heading">#</a></h4>
+</section>
+<hr class="docutils" />
+<section id="if-you-need-a-little-help-with-this-concept-check-out-the-notebooks-lists-or-dictionaires">
+<h4><span class="math notranslate nohighlight">\(^{1.}\)</span> If you need a little help with this concept check out the notebooks <a class="reference external" href="https://colab.research.google.com/drive/14ieLqX8VoBMmHGeejw3lbHAYIEXTxk2a">Lists</a> or <a class="reference external" href="https://colab.research.google.com/drive/1xGcImigTwgiAlYBHdHG44KH3i3IS6Prr#scrollTo=9Gg8RVZ0aphR">Dictionaires</a><a class="headerlink" href="#if-you-need-a-little-help-with-this-concept-check-out-the-notebooks-lists-or-dictionaires" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">df_bare_bones</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
+<span class="n">df_bare_bones</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="adding-labels-for-columns-and-rows">
+<h3><em><strong>Adding Labels For Columns And Rows</strong></em><a class="headerlink" href="#adding-labels-for-columns-and-rows" title="Link to this heading">#</a></h3>
+<section id="df-bare-bones-is-a-table-but-it-s-not-very-useful-the-first-improvement-is-to-provide-labels-for-the-columns-and-the-rows-both-are-attributes-of-df-bare-bones-and-the-values-have-been-assigned-by-pandas-the-column-attribute-is-referred-to-as-columns-and-the-row-attribute-as-index-as-with-all-objects-these-attributes-can-be-accessed-using-a-dot-after-the-object-s-name-in-this-case-the-columns-attribute-is-assigned-the-list-first-second-third-and-the-rows-attribute-is-assigned-the-list-x-y">
+<h4><font color='green'>df_bare_bones</font> is a table, but it’s not very useful.  The first improvement is to provide labels for the<br> columns and the rows.  Both are attributes of <font color='green'>df_bare_bones</font> and the values have been<br> assigned by Pandas.  The column attribute is referred to as <font color='green'>columns</font> and the row attribute<br> as <font color='green'>index</font>. As with all objects, these attributes can be accessed using a dot after the<br> object’s name. In this case, the <font color='green'>columns</font> attribute is assigned the list <font color='green'>[‘First’, ‘Second’, ‘Third’]</font>,<br> and the <font color='green'>rows</font> attribute is assigned the list <font color='green'>[‘x’, ‘y’]</font>.<a class="headerlink" href="#df-bare-bones-is-a-table-but-it-s-not-very-useful-the-first-improvement-is-to-provide-labels-for-the-columns-and-the-rows-both-are-attributes-of-df-bare-bones-and-the-values-have-been-assigned-by-pandas-the-column-attribute-is-referred-to-as-columns-and-the-row-attribute-as-index-as-with-all-objects-these-attributes-can-be-accessed-using-a-dot-after-the-object-s-name-in-this-case-the-columns-attribute-is-assigned-the-list-first-second-third-and-the-rows-attribute-is-assigned-the-list-x-y" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_bare_bones</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;First&#39;</span><span class="p">,</span><span class="s1">&#39;Second&#39;</span><span class="p">,</span><span class="s1">&#39;Third&#39;</span><span class="p">]</span>
+<span class="n">df_bare_bones</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+<span class="n">df_bare_bones</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="including-the-labels-as-arguments-of-dataframe">
+<h3><em><strong>Including The Labels As Arguments Of DataFrame()</strong></em><a class="headerlink" href="#including-the-labels-as-arguments-of-dataframe" title="Link to this heading">#</a></h3>
+<section id="here-the-values-assigned-to-the-columns-and-index-attributes-are-arguments-of-the-method-because-the-attributes-are-not-variables-of-the-notebook-the-names-assigned-may-be-the-same-as-the-attributes">
+<h4>Here the values assigned to the <font color='green'>columns</font> and <font color='green'>index</font> attributes are arguments of the method.<br>  Because the attributes are not variables of the notebook, the names assigned may be the<br> same as the attributes.<a class="headerlink" href="#here-the-values-assigned-to-the-columns-and-index-attributes-are-arguments-of-the-method-because-the-attributes-are-not-variables-of-the-notebook-the-names-assigned-may-be-the-same-as-the-attributes" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;First&#39;</span><span class="p">,</span><span class="s1">&#39;Second&#39;</span><span class="p">,</span><span class="s1">&#39;Third&#39;</span><span class="p">]</span>
+<span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+<span class="n">df_bare_bones</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+<span class="n">df_bare_bones</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>x</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="iterating-through-the-columns-and-index">
+<h3><em><strong>Iterating Through The Columns And Index</strong></em><a class="headerlink" href="#iterating-through-the-columns-and-index" title="Link to this heading">#</a></h3>
+<section id="the-values-of-rows-and-columns-can-be-accessed-by-iterating-through-a-dataframe-s-columns-or-index-here-the-values-of-the-labels-of-columns-and-index-are-printed">
+<h4>The values of rows and columns can be accessed by iterating through a DataFrame’s <font color='green'>columns</font><br> or <font color='green'>index</font>.  Here the values of the labels of <font color='green'>columns</font> and <font color='green'>index</font> are printed.<a class="headerlink" href="#the-values-of-rows-and-columns-can-be-accessed-by-iterating-through-a-dataframe-s-columns-or-index-here-the-values-of-the-labels-of-columns-and-index-are-printed" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df_bare_bones</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">df_bare_bones</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First
+Second
+Third
+x
+y
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-loc-and-iloc-attributes">
+<h3><em><strong>The loc and iloc Attributes</strong></em><a class="headerlink" href="#the-loc-and-iloc-attributes" title="Link to this heading">#</a></h3>
+<section id="a-row-of-a-dataframe-is-identified-with-the-loc-or-iloc-attribute-the-loc-attribute-uses-the-value-of-the-index-in-our-example-x-or-y-the-iloc-attribute-uses-the-location-of-the-row-in-the-index-in-our-example-0-or-1">
+<h4>A row of A DataFrame is identified with the <font color='green'>loc</font> or <font color='green'>iloc</font> attribute.  The <font color='green'>loc</font> attribute uses<br> the value of the <font color='green'>index</font>; in our example ‘x’ or ‘y’.  The <font color='green'>iloc</font> attribute uses the location of the row<br> in the <font color='green'>index</font>; in our example, 0 or 1.<a class="headerlink" href="#a-row-of-a-dataframe-is-identified-with-the-loc-or-iloc-attribute-the-loc-attribute-uses-the-value-of-the-index-in-our-example-x-or-y-the-iloc-attribute-uses-the-location-of-the-row-in-the-index-in-our-example-0-or-1" title="Link to this heading">#</a></h4>
+</section>
+<section id="in-the-next-code-cell-the-values-of-first-column-are-printed-by-iterating-through-the-index-with-loc">
+<h4>In the next code cell the values of ‘First’ column are printed by iterating through the index with loc.<a class="headerlink" href="#in-the-next-code-cell-the-values-of-first-column-are-printed-by-iterating-through-the-index-with-loc" title="Link to this heading">#</a></h4>
+</section>
+<section id="loc-attribute">
+<h4><em><strong>loc Attribute</strong></em><a class="headerlink" href="#loc-attribute" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">df_bare_bones</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">df_bare_bones</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="s1">&#39;First&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-iloc-example-uses-the-index-values-of-0-and-1-to-print-the-value-of-second-column-the-iloc-attribute-requires-the-enumerate-function-of-python-that-keeps-track-of-the-number-of-iterations-3-the-row-is-then-fixed-with-loc-and-the-columns-are-iterated-through-to-show-all-the-values-of-the-list-x">
+<h4>The <font color='green'>iloc</font> example uses the <font color='green'>index</font> values of 0 and 1 to print the value of ‘Second’ column.<br>  The <font color='green'>iloc</font> attribute requires the <font color='green'>enumerate</font> function of Python that keeps track of the number<br> of iterations.<span class="math notranslate nohighlight">\(^{3}\)</span>  The row is then fixed with <font color='green'>loc</font> and the columns are iterated through to show all<br> the values of the list <font color='green'>x</font>.<a class="headerlink" href="#the-iloc-example-uses-the-index-values-of-0-and-1-to-print-the-value-of-second-column-the-iloc-attribute-requires-the-enumerate-function-of-python-that-keeps-track-of-the-number-of-iterations-3-the-row-is-then-fixed-with-loc-and-the-columns-are-iterated-through-to-show-all-the-values-of-the-list-x" title="Link to this heading">#</a></h4>
+<hr class="docutils" />
+<section id="gemini-provides-a-nice-explanation-of-the-enumerate-function">
+<h5><span class="math notranslate nohighlight">\(^{3.}\)</span> <a class="reference external" href="https://www.google.com/search?q=enumerate+python&amp;amp;sca_esv=4c9a68065c6f5352&amp;amp;sxsrf=AHTn8zpFQrffBo7A1DtDquPAIbCumB4tUQ%3A1742055832997&amp;amp;ei=mKnVZ9bRPKvJwN4P857-qAo&amp;amp;oq=enumerate+fpython&amp;amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiEWVudW1lcmF0ZSBmcHl0aG9uKgIIATIGEAAYBxgeMgoQABiABBixAxgNMgYQABgHGB4yBhAAGAcYHjIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHjIHEAAYgAQYDTIHEAAYgAQYDTIGEAAYBxgeSO1BUKguWKgucAN4AZABAJgBXKABXKoBATG4AQHIAQD4AQGYAgSgAoIBwgIKEAAYsAMY1gQYR8ICDRAAGIAEGLADGEMYigXCAhMQLhiABBiwAxjRAxhDGMcBGIoFmAMAiAYBkAYKkgcDMy4xoAfuBg&amp;amp;sclient=gws-wiz-serp">Gemini</a> provides a nice explanation of the <font color='green'>enumerate</font> function.<a class="headerlink" href="#gemini-provides-a-nice-explanation-of-the-enumerate-function" title="Link to this heading">#</a></h5>
+</section>
+</section>
+<section id="iloc-attribute">
+<h4><em><strong>iloc Attribute</strong></em><a class="headerlink" href="#iloc-attribute" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row</span><span class="p">,</span><span class="n">index</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_bare_bones</span><span class="o">.</span><span class="n">index</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">df_bare_bones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="s1">&#39;Second&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="locate-a-row-with-an-index-value">
+<h3><em><strong>Locate A Row With An Index Value</strong></em><a class="headerlink" href="#locate-a-row-with-an-index-value" title="Link to this heading">#</a></h3>
+<section id="the-get-indexer-method-locates-the-row-number-of-the-index-from-a-value-if-the-label-is-not-present-minus-one-is-returned-the-value-must-be-an-iterable-here-it-is-a-list">
+<h4>The <font color='green'>get_indexer()</font> method locates the row number of the <font color='green'>index</font> from a value.  If the label is not present, minus one is returned. The value must be an iterable.  Here it is a list.<a class="headerlink" href="#the-get-indexer-method-locates-the-row-number-of-the-index-from-a-value-if-the-label-is-not-present-minus-one-is-returned-the-value-must-be-an-iterable-here-it-is-a-list" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_values</span><span class="o">=</span><span class="n">df_bare_bones</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_indexer</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
+<span class="n">index_values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0, -1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_bare_bones</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First     1
+Second    2
+Third     3
+Name: x, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span><span class="n">loc</span><span class="o">=</span><span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="o">-</span><span class="mf">114.00</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span><span class="n">loc</span><span class="o">=-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fixing-the-row-with-loc-and-iterating-through-the-columns">
+<h4><em><strong>Fixing The Row With <font color='green'>loc</font> And Iterating Through The Columns.</strong></em><a class="headerlink" href="#fixing-the-row-with-loc-and-iterating-through-the-columns" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df_bare_bones</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">df_bare_bones</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="n">column</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="create-a-dataframe-from-a-dictionary">
+<h3><em><strong>Create A DataFrame From A Dictionary</strong></em><a class="headerlink" href="#create-a-dataframe-from-a-dictionary" title="Link to this heading">#</a></h3>
+<section id="it-s-convenient-to-create-a-dataframe-from-a-dictionary-dictionaries-are-key-value-pairs-4-the-keys-are-interpreted-as-column-names-and-the-values-are-the-data-assigned-to-those-columns-in-this-example-the-value-of-x-and-value-of-y-columns-are-assigned-the-lists-x-and-y-respectively">
+<h4>It’s convenient to create a DataFrame from a dictionary.  Dictionaries are key-value pairs.<span class="math notranslate nohighlight">\(^{4}\)</span><br> The keys are interpreted as column names, and the values are the data assigned to those columns.<br> In this example, the ‘Value Of X’ and ‘Value Of Y’ columns are assigned the lists <font color='green'>x</font> and <font color='green'>y</font>, respectively.<a class="headerlink" href="#it-s-convenient-to-create-a-dataframe-from-a-dictionary-dictionaries-are-key-value-pairs-4-the-keys-are-interpreted-as-column-names-and-the-values-are-the-data-assigned-to-those-columns-in-this-example-the-value-of-x-and-value-of-y-columns-are-assigned-the-lists-x-and-y-respectively" title="Link to this heading">#</a></h4>
+<hr class="docutils" />
+<section id="for-an-introduction-to-dictionaries-see-dictionaries-notebook">
+<h5><span class="math notranslate nohighlight">\(^{4}\)</span> For an introduction to dictionaries see <a href='https://colab.research.google.com/drive/1xGcImigTwgiAlYBHdHG44KH3i3IS6Prr?usp=sharing'>Dictionaries Notebook</a>.<a class="headerlink" href="#for-an-introduction-to-dictionaries-see-dictionaries-notebook" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Pandas method DataFrame() with the sole argument the dictionary data</span>
+<span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Values of x&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="s1">&#39;Values of y&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]}</span>
+<span class="n">df_dict</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Values of x</th>
+      <th>Values of y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>First</th>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>Second</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Third</th>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="add-a-column">
+<h3><em><strong>Add A Column</strong></em><a class="headerlink" href="#add-a-column" title="Link to this heading">#</a></h3>
+<section id="assign-a-list-to-the-new-column-values-of-z">
+<h4><em><strong>Assign A List To The New Column ‘Values of z’</strong></em><a class="headerlink" href="#assign-a-list-to-the-new-column-values-of-z" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_dict</span><span class="p">[</span><span class="s1">&#39;Values of z&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mf">4.5</span><span class="p">,</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">6.5</span><span class="p">]</span>
+<span class="n">df_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Values of x</th>
+      <th>Values of y</th>
+      <th>Values of z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>First</th>
+      <td>1</td>
+      <td>4</td>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <th>Second</th>
+      <td>2</td>
+      <td>5</td>
+      <td>5.5</td>
+    </tr>
+    <tr>
+      <th>Third</th>
+      <td>3</td>
+      <td>6</td>
+      <td>6.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="assign-three-plus-the-column-values-of-y-to-the-new-column-values-of-z">
+<h4><em><strong>Assign Three Plus The Column ‘Values of y’ To The New Column ‘Values of z’</strong></em><a class="headerlink" href="#assign-three-plus-the-column-values-of-y-to-the-new-column-values-of-z" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_dict</span><span class="p">[</span><span class="s1">&#39;Values of z&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df_dict</span><span class="p">[</span><span class="s1">&#39;Values of y&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">3</span>
+<span class="n">df_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Values of x</th>
+      <th>Values of y</th>
+      <th>Values of z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>First</th>
+      <td>1</td>
+      <td>4</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>Second</th>
+      <td>2</td>
+      <td>5</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>Third</th>
+      <td>3</td>
+      <td>6</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="the-transpose">
+<h3><em><strong>The Transpose</strong></em><a class="headerlink" href="#the-transpose" title="Link to this heading">#</a></h3>
+<section id="because-the-dataframe-method-interprets-the-dictionary-keys-as-column-names-df-dict-is-the-transpose-of-df-bare-bones-to-that-end-the-index-of-df-dict-is-assigned-the-columns-list-that-was-assigned-as-the-columns-of-df-bare-bones-the-pandas-method-transpose-transposes-a-dataframe-but-does-not-replace-the-values-to-keep-the-transposed-dataframe-it-must-be-assigned-to-another-variable-the-transpose-method-may-also-be-accessed-with-a-capital-t">
+<h4>Because the <font color='green'>DataFrame()</font> method interprets the dictionary keys as column names, <font color='green'>df_dict</font><br> is the transpose of <font color='green'>df_bare_bones</font>.  To that end, the index of <font color='green'>df_dict</font> is assigned the <font color='green'>columns</font><br> list that was assigned as the <font color='green'>columns</font> of <font color='green'>df_bare_bones</font>.  The Pandas method <font color='green'>transpose()</font><br> transposes a DataFrame but does not replace the values.  To keep the transposed <font color='green'>DataFrame</font><br> it must be assigned to another variable. The <font color='green'>transpose</font> method may also be accessed with a capital <font color='green'>T</font>.<a class="headerlink" href="#because-the-dataframe-method-interprets-the-dictionary-keys-as-column-names-df-dict-is-the-transpose-of-df-bare-bones-to-that-end-the-index-of-df-dict-is-assigned-the-columns-list-that-was-assigned-as-the-columns-of-df-bare-bones-the-pandas-method-transpose-transposes-a-dataframe-but-does-not-replace-the-values-to-keep-the-transposed-dataframe-it-must-be-assigned-to-another-variable-the-transpose-method-may-also-be-accessed-with-a-capital-t" title="Link to this heading">#</a></h4>
+<section id="transpose-with-method-transpose-t-for-shorthand">
+<h5><em><strong>Transpose With Method <font color='green'>transpose()</font>, <font color='green'>T</font> For Shorthand.</strong></em><a class="headerlink" href="#transpose-with-method-transpose-t-for-shorthand" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Use the full name of the method transpose()</span>
+<span class="n">df_dict</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Values of x</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>Values of y</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Values of z</th>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Use the short-hand assign it to df_transpose</span>
+<span class="n">df_transpose</span><span class="o">=</span><span class="n">df_dict</span><span class="o">.</span><span class="n">T</span>
+<span class="n">df_transpose</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Values of x</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>Values of y</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Values of z</th>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="dataframes-csv-and-excel-files">
+<h2><em><strong>DataFrames, CSV, And Excel Files</strong></em><a class="headerlink" href="#dataframes-csv-and-excel-files" title="Link to this heading">#</a></h2>
+<section id="creating-a-dataframe-with-a-csv-file">
+<h3><em><strong>Creating A DataFrame With A CSV File</strong></em><a class="headerlink" href="#creating-a-dataframe-with-a-csv-file" title="Link to this heading">#</a></h3>
+<section id="colab-notebooks-contain-sample-data-within-the-sample-data-folder-in-this-instance-the-data-from-the-csv-file-california-housing-train-csv-is-transformed-into-a-dataframe-using-the-pandas-read-csv-method-the-sole-necessary-argument-for-this-method-is-the-file-path-from-dropbox">
+<h4>Colab notebooks contain sample data within the ‘sample_data’ folder. In this instance,<br> the data from the csv file ‘california_housing_train.csv’ is transformed into a DataFrame<br> using the Pandas <font color='green'>read_csv()</font> method. The sole necessary argument for this method is<br> the file path from DropBox.<a class="headerlink" href="#colab-notebooks-contain-sample-data-within-the-sample-data-folder-in-this-instance-the-data-from-the-csv-file-california-housing-train-csv-is-transformed-into-a-dataframe-using-the-pandas-read-csv-method-the-sole-necessary-argument-for-this-method-is-the-file-path-from-dropbox" title="Link to this heading">#</a></h4>
+</section>
+<section id="the-file-is-then-assigned-to-df-csv-and-the-initial-ten-rows-are-displayed-by-slicing-the-index-using-the-iloc-attribute">
+<h4>The file is then assigned to <font color='green'>df_csv</font>, and the initial ten rows are displayed by slicing the <font color='green'>index</font><br> using the <font color='green'>iloc</font> attribute..<a class="headerlink" href="#the-file-is-then-assigned-to-df-csv-and-the-initial-ten-rows-are-displayed-by-slicing-the-index-using-the-iloc-attribute" title="Link to this heading">#</a></h4>
+</section>
+<section id="id1">
+<h4>The file is then assigned to <font color='green'>df_csv</font>, and the initial ten rows are displayed by slicing the <font color='green'>index</font><br> using the <font color='green'>iloc</font> attribute.<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://www.dropbox.com/scl/fi/8vr4pq42p99zxu5lc9qe6/</span><span class="se">\</span>
+<span class="s1">california_housing_train.csv?rlkey=8foebx6137zspvq5d5rqd9f2f&amp;st=01oy0yej&amp;dl=1&#39;</span>
+<span class="n">df_csv</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">df_csv</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-114.31</td>
+      <td>34.19</td>
+      <td>15.0</td>
+      <td>5612.0</td>
+      <td>1283.0</td>
+      <td>1015.0</td>
+      <td>472.0</td>
+      <td>1.4936</td>
+      <td>66900.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-114.47</td>
+      <td>34.40</td>
+      <td>19.0</td>
+      <td>7650.0</td>
+      <td>1901.0</td>
+      <td>1129.0</td>
+      <td>463.0</td>
+      <td>1.8200</td>
+      <td>80100.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-114.56</td>
+      <td>33.69</td>
+      <td>17.0</td>
+      <td>720.0</td>
+      <td>174.0</td>
+      <td>333.0</td>
+      <td>117.0</td>
+      <td>1.6509</td>
+      <td>85700.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-114.57</td>
+      <td>33.64</td>
+      <td>14.0</td>
+      <td>1501.0</td>
+      <td>337.0</td>
+      <td>515.0</td>
+      <td>226.0</td>
+      <td>3.1917</td>
+      <td>73400.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-114.57</td>
+      <td>33.57</td>
+      <td>20.0</td>
+      <td>1454.0</td>
+      <td>326.0</td>
+      <td>624.0</td>
+      <td>262.0</td>
+      <td>1.9250</td>
+      <td>65500.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-114.58</td>
+      <td>33.63</td>
+      <td>29.0</td>
+      <td>1387.0</td>
+      <td>236.0</td>
+      <td>671.0</td>
+      <td>239.0</td>
+      <td>3.3438</td>
+      <td>74000.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>-114.58</td>
+      <td>33.61</td>
+      <td>25.0</td>
+      <td>2907.0</td>
+      <td>680.0</td>
+      <td>1841.0</td>
+      <td>633.0</td>
+      <td>2.6768</td>
+      <td>82400.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-114.59</td>
+      <td>34.83</td>
+      <td>41.0</td>
+      <td>812.0</td>
+      <td>168.0</td>
+      <td>375.0</td>
+      <td>158.0</td>
+      <td>1.7083</td>
+      <td>48500.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>-114.59</td>
+      <td>33.61</td>
+      <td>34.0</td>
+      <td>4789.0</td>
+      <td>1175.0</td>
+      <td>3134.0</td>
+      <td>1056.0</td>
+      <td>2.1782</td>
+      <td>58400.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>-114.60</td>
+      <td>34.83</td>
+      <td>46.0</td>
+      <td>1497.0</td>
+      <td>309.0</td>
+      <td>787.0</td>
+      <td>271.0</td>
+      <td>2.1908</td>
+      <td>48100.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="creating-an-excel-file-from-a-dataframe-and-back-to-a-dataframe">
+<h3><em><strong>Creating An Excel File From A DataFrame And Back To A DataFrame</strong></em><a class="headerlink" href="#creating-an-excel-file-from-a-dataframe-and-back-to-a-dataframe" title="Link to this heading">#</a></h3>
+<section id="the-to-excel-method-converts-a-dataframe-into-an-excel-file-this-example-uses-the-required-argument-file-path-and-specifies-the-file-name-as-sample-xlsx-the-file-will-be-located-in-the-notebook-s-root-directory-contents-additionally-the-optional-arguments-sheet-name-and-index-are-used-the-sheet-name-is-assigned-first-sheet-and-the-index-is-set-to-false-preventing-the-df-csv-index-from-being-included-in-first-sheet-the-resulting-excel-file-is-then-converted-back-into-a-dataframe-df-excel-and-the-first-ten-rows-are-displayed-by-slicing-without-using-iloc-the-results-are-identical-to-df-csv">
+<h4>The <font color='green'>to_excel()</font> method converts a DataFrame into an Excel file. This example uses the<br> required argument file path, and specifies the file name as <font color='green'>sample.xlsx</font>. The file will be<br> located in the notebook’s root directory ‘/contents.’ Additionally, the optional arguments<br> <font color='green'>sheet_name</font> and <font color='green'>index</font> are used. The <font color='green'>sheet_name</font> is assigned ‘First Sheet,’ and the <font color='green'>index</font><br> is set to False, preventing the <font color='green'>df_csv</font> index from being included in ‘First Sheet.’ The resulting<br> Excel file is then converted back into a DataFrame (<font color='green'>df_excel</font>), and the first ten rows are<br> displayed by slicing without using <font color='green'>iloc</font>.  The results are identical to <font color='green'>df_csv</font>.<a class="headerlink" href="#the-to-excel-method-converts-a-dataframe-into-an-excel-file-this-example-uses-the-required-argument-file-path-and-specifies-the-file-name-as-sample-xlsx-the-file-will-be-located-in-the-notebook-s-root-directory-contents-additionally-the-optional-arguments-sheet-name-and-index-are-used-the-sheet-name-is-assigned-first-sheet-and-the-index-is-set-to-false-preventing-the-df-csv-index-from-being-included-in-first-sheet-the-resulting-excel-file-is-then-converted-back-into-a-dataframe-df-excel-and-the-first-ten-rows-are-displayed-by-slicing-without-using-iloc-the-results-are-identical-to-df-csv" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_csv</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;sample.xlsx&#39;</span><span class="p">,</span><span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;First Sheet&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;/content/sample.xlsx&#39;</span>
+<span class="n">df_excel</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;First Sheet&#39;</span><span class="p">)</span>
+<span class="n">df_excel</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_17325</span><span class="o">/</span><span class="mf">3575374214.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;/content/sample.xlsx&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df_excel</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;First Sheet&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df_excel</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_base.py</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, thousands, comment, skipfooter, convert_float, mangle_dupe_cols, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span>         <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">--&gt; </span><span class="mi">364</span>         <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span>     <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_base.py</span> in <span class="ni">__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span>                 <span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;xls&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1190</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1191</span>                 <span class="n">ext</span> <span class="o">=</span> <span class="n">inspect_excel_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1192</span>                     <span class="n">content_or_path</span><span class="o">=</span><span class="n">path_or_buffer</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
+<span class="g g-Whitespace">   </span><span class="mi">1193</span>                 <span class="p">)</span>
+
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/excel/_base.py</span> in <span class="ni">inspect_excel_format</span><span class="nt">(content_or_path, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1068</span>         <span class="n">content_or_path</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">content_or_path</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1069</span> 
+<span class="ne">-&gt; </span><span class="mi">1070</span>     <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1071</span>         <span class="n">content_or_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">is_text</span><span class="o">=</span><span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1072</span>     <span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+
+<span class="nn">~/anaconda3/lib/python3.9/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>             <span class="c1"># Binary mode</span>
+<span class="ne">--&gt; </span><span class="mi">711</span>             <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span>         <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span> 
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/content/sample.xlsx&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="making-a-column-the-index">
+<h3><em><strong>Making A Column The Index</strong></em><a class="headerlink" href="#making-a-column-the-index" title="Link to this heading">#</a></h3>
+<section id="the-set-index-method-makes-a-column-an-index-one-of-the-arguments-of-the-method-is-inplace-that-defaults-to-false-if-assigned-true-the-dataframe-is-permanently-changed-here-it-is-assigned-to-a-new-dataframe">
+<h4>The <font color='green'>set_index()</font> method makes a column an index. One of the arguments of the method<br> is <font color='green'>inplace</font> that defaults to False.  If assigned True, the DataFrame is permanently changed.<br>  Here it is assigned to a new DataFrame.<a class="headerlink" href="#the-set-index-method-makes-a-column-an-index-one-of-the-arguments-of-the-method-is-inplace-that-defaults-to-false-if-assigned-true-the-dataframe-is-permanently-changed-here-it-is-assigned-to-a-new-dataframe" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_excel_new_index</span><span class="o">=</span><span class="n">df_excel</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span>
+<span class="n">df_excel_new_index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-bfc5867a-ee70-42c4-89b1-b132cd20b8c4" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+    </tr>
+    <tr>
+      <th>longitude</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>-114.31</th>
+      <td>34.19</td>
+      <td>15</td>
+      <td>5612</td>
+      <td>1283</td>
+      <td>1015</td>
+      <td>472</td>
+      <td>1.4936</td>
+      <td>66900</td>
+    </tr>
+    <tr>
+      <th>-114.47</th>
+      <td>34.40</td>
+      <td>19</td>
+      <td>7650</td>
+      <td>1901</td>
+      <td>1129</td>
+      <td>463</td>
+      <td>1.8200</td>
+      <td>80100</td>
+    </tr>
+    <tr>
+      <th>-114.56</th>
+      <td>33.69</td>
+      <td>17</td>
+      <td>720</td>
+      <td>174</td>
+      <td>333</td>
+      <td>117</td>
+      <td>1.6509</td>
+      <td>85700</td>
+    </tr>
+    <tr>
+      <th>-114.57</th>
+      <td>33.64</td>
+      <td>14</td>
+      <td>1501</td>
+      <td>337</td>
+      <td>515</td>
+      <td>226</td>
+      <td>3.1917</td>
+      <td>73400</td>
+    </tr>
+    <tr>
+      <th>-114.57</th>
+      <td>33.57</td>
+      <td>20</td>
+      <td>1454</td>
+      <td>326</td>
+      <td>624</td>
+      <td>262</td>
+      <td>1.9250</td>
+      <td>65500</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>-124.26</th>
+      <td>40.58</td>
+      <td>52</td>
+      <td>2217</td>
+      <td>394</td>
+      <td>907</td>
+      <td>369</td>
+      <td>2.3571</td>
+      <td>111400</td>
+    </tr>
+    <tr>
+      <th>-124.27</th>
+      <td>40.69</td>
+      <td>36</td>
+      <td>2349</td>
+      <td>528</td>
+      <td>1194</td>
+      <td>465</td>
+      <td>2.5179</td>
+      <td>79000</td>
+    </tr>
+    <tr>
+      <th>-124.30</th>
+      <td>41.84</td>
+      <td>17</td>
+      <td>2677</td>
+      <td>531</td>
+      <td>1244</td>
+      <td>456</td>
+      <td>3.0313</td>
+      <td>103600</td>
+    </tr>
+    <tr>
+      <th>-124.30</th>
+      <td>41.80</td>
+      <td>19</td>
+      <td>2672</td>
+      <td>552</td>
+      <td>1298</td>
+      <td>478</td>
+      <td>1.9797</td>
+      <td>85800</td>
+    </tr>
+    <tr>
+      <th>-124.35</th>
+      <td>40.54</td>
+      <td>52</td>
+      <td>1820</td>
+      <td>300</td>
+      <td>806</td>
+      <td>270</td>
+      <td>3.0147</td>
+      <td>94600</td>
+    </tr>
+  </tbody>
+</table>
+<p>17000 rows × 8 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-bfc5867a-ee70-42c4-89b1-b132cd20b8c4')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-bfc5867a-ee70-42c4-89b1-b132cd20b8c4 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-bfc5867a-ee70-42c4-89b1-b132cd20b8c4');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-eb09276a-c449-4f13-b94c-bdf7cddb3ed2">
+      <button class="colab-df-quickchart" onclick="quickchart('df-eb09276a-c449-4f13-b94c-bdf7cddb3ed2')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-eb09276a-c449-4f13-b94c-bdf7cddb3ed2 button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+  <div id="id_eb83b6e6-34f2-45d3-9bd3-fff1a7e2b95d">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('df_excel_new_index')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_eb83b6e6-34f2-45d3-9bd3-fff1a7e2b95d button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('df_excel_new_index');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="pandas-to-numpy">
+<h2><em><strong>Pandas To Numpy</strong></em><a class="headerlink" href="#pandas-to-numpy" title="Link to this heading">#</a></h2>
+<section id="the-method-to-numpy-converts-a-dataframe-to-a-numpy-array-all-values-of-the-dataframe-are-converted-to-a-single-type-unlike-dataframes-numpy-arrays-are-not-indexed-the-value-for-the-114-56-latitude-is-accessed-with-the-iloc-attribute">
+<h3>The method <font color='green'>to_numpy()</font> converts a DataFrame to a NumPy array. All values of the DataFrame are converted to a single type.  Unlike DataFrames, NumPy arrays are not indexed. The value for the -114.56 latitude is accessed with the <font color='green'>iloc</font> attribute.<a class="headerlink" href="#the-method-to-numpy-converts-a-dataframe-to-a-numpy-array-all-values-of-the-dataframe-are-converted-to-a-single-type-unlike-dataframes-numpy-arrays-are-not-indexed-the-value-for-the-114-56-latitude-is-accessed-with-the-iloc-attribute" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">excel_numpy</span><span class="o">=</span><span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">loc</span><span class="o">=</span><span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="o">-</span><span class="mf">114.56</span><span class="p">)</span>
+<span class="n">excel_numpy</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.3690e+01, 1.7000e+01, 7.2000e+02, 1.7400e+02, 3.3300e+02,
+       1.1700e+02, 1.6509e+00, 8.5700e+04])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-apply-method">
+<h2><em><strong>The apply() Method</strong></em><a class="headerlink" href="#the-apply-method" title="Link to this heading">#</a></h2>
+<section id="the-apply-function-in-pandas-is-a-versatile-method-used-to-apply-a-function-along-an-axis-of-a-dataframe-or-to-the-values-of-a-series-it-enables-element-wise-row-wise-or-column-wise-operations-using-custom-or-built-in-functions-avoiding-iterating-through-rows-or-columns">
+<h3>The <font color='green'>apply()</font> function in Pandas is a versatile method used to apply a function along an axis of a DataFrame or to the values of a Series. It enables element-wise, row-wise, or column-wise operations using custom or built-in functions avoiding iterating through rows or columns.<a class="headerlink" href="#the-apply-function-in-pandas-is-a-versatile-method-used-to-apply-a-function-along-an-axis-of-a-dataframe-or-to-the-values-of-a-series-it-enables-element-wise-row-wise-or-column-wise-operations-using-custom-or-built-in-functions-avoiding-iterating-through-rows-or-columns" title="Link to this heading">#</a></h3>
+</section>
+<section id="the-average-bedrooms-function-calculates-the-average-number-of-bedrooms-from-the-total-number-of-bedrooms-and-households">
+<h3>The <font color='green'>average_bedrooms()</font> function calculates the average number of bedrooms from the total number of bedrooms and households.<a class="headerlink" href="#the-average-bedrooms-function-calculates-the-average-number-of-bedrooms-from-the-total-number-of-bedrooms-and-households" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">average_bedrooms</span><span class="p">(</span><span class="n">total_num_bedrooms</span><span class="p">,</span><span class="n">total_num_households</span><span class="p">):</span>
+  <span class="n">avg_bedrooms</span><span class="o">=</span><span class="n">total_num_bedrooms</span><span class="o">/</span><span class="n">total_num_households</span>
+  <span class="k">return</span> <span class="n">avg_bedrooms</span>
+</pre></div>
+</div>
+</section>
+<section id="average-bedrooms-is-applied-to-each-longitude-row-of-the-dataframe-df-excel-new-using-the-anonymous-lambda-function-allows-the-assignment-of-values-in-each-row-as-arguments-of-the-function-5">
+<h3><font color='green'>average_bedrooms()</font> is applied to each longitude (row) of the DataFrame <font color='green'>df_excel_new</font>. Using the anonymous lambda function allows the assignment of values in each row as arguments of the function.<span class="math notranslate nohighlight">\(^{5}\)</span><a class="headerlink" href="#average-bedrooms-is-applied-to-each-longitude-row-of-the-dataframe-df-excel-new-using-the-anonymous-lambda-function-allows-the-assignment-of-values-in-each-row-as-arguments-of-the-function-5" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_excel_new_index</span><span class="p">[</span><span class="s1">&#39;Average Bedrooms&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">average_bedrooms</span><span class="p">(</span>
+        <span class="n">total_num_bedrooms</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;total_bedrooms&#39;</span><span class="p">],</span>  <span class="c1"># &#39;total_bedrooms&#39; accessed from the row</span>
+        <span class="n">total_num_households</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;households&#39;</span><span class="p">]</span>   <span class="c1"># Access the &#39;households&#39; value from the row</span>
+         <span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                            <span class="c1">#axis=1 indicates columns</span>
+<span class="n">df_excel_new_index</span>
+</pre></div>
+</div>
+</section>
+<section id="in-this-example-the-apply-method-has-the-same-effects-as-direct-operation-on-the-columns">
+<h3>In this example, the <font color='green'>apply()</font> method has the same effects as direct operation on the columns.<a class="headerlink" href="#in-this-example-the-apply-method-has-the-same-effects-as-direct-operation-on-the-columns" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df_excel_new_index</span><span class="p">[</span><span class="s1">&#39;Average Bedrooms&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df_exce_new_index</span><span class="p">[</span><span class="s1">&#39;total_bedrooms&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">df_excel_new_index</span><span class="p">[</span><span class="s1">&#39;households&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<section id="for-a-discussion-of-lambda-functions-see-functions">
+<h4><span class="math notranslate nohighlight">\(^{5}\)</span> For a discussion of lambda functions see <a href='https://colab.research.google.com/drive/125oeGZS-dlF4namW00LLREKElsr9dxsb?usp=drive_link'> Functions</a>.<a class="headerlink" href="#for-a-discussion-of-lambda-functions-see-functions" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">average_bedrooms</span><span class="p">(</span><span class="n">total_num_bedrooms</span><span class="p">,</span><span class="n">total_num_households</span><span class="p">):</span>
+  <span class="n">avg_bedrooms</span><span class="o">=</span><span class="n">total_num_bedrooms</span><span class="o">/</span><span class="n">total_num_households</span>
+  <span class="k">return</span> <span class="n">avg_bedrooms</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_excel_new_index</span><span class="p">[</span><span class="s1">&#39;Average Bedrooms&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">average_bedrooms</span><span class="p">(</span>
+        <span class="n">total_num_bedrooms</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;total_bedrooms&#39;</span><span class="p">],</span>  <span class="c1"># &#39;total_bedrooms&#39; value accessed from the row</span>
+        <span class="n">total_num_households</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;households&#39;</span><span class="p">]</span>   <span class="c1"># Access the &#39;households&#39; value from the row</span>
+         <span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_excel_new_index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-ee8211da-5bdc-4c0e-8f06-7afd2d023519" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>Average Bedrooms</th>
+    </tr>
+    <tr>
+      <th>longitude</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>-114.31</th>
+      <td>34.19</td>
+      <td>15</td>
+      <td>5612</td>
+      <td>1283</td>
+      <td>1015</td>
+      <td>472</td>
+      <td>1.4936</td>
+      <td>66900</td>
+      <td>2.718220</td>
+    </tr>
+    <tr>
+      <th>-114.47</th>
+      <td>34.40</td>
+      <td>19</td>
+      <td>7650</td>
+      <td>1901</td>
+      <td>1129</td>
+      <td>463</td>
+      <td>1.8200</td>
+      <td>80100</td>
+      <td>4.105832</td>
+    </tr>
+    <tr>
+      <th>-114.56</th>
+      <td>33.69</td>
+      <td>17</td>
+      <td>720</td>
+      <td>174</td>
+      <td>333</td>
+      <td>117</td>
+      <td>1.6509</td>
+      <td>85700</td>
+      <td>1.487179</td>
+    </tr>
+    <tr>
+      <th>-114.57</th>
+      <td>33.64</td>
+      <td>14</td>
+      <td>1501</td>
+      <td>337</td>
+      <td>515</td>
+      <td>226</td>
+      <td>3.1917</td>
+      <td>73400</td>
+      <td>1.491150</td>
+    </tr>
+    <tr>
+      <th>-114.57</th>
+      <td>33.57</td>
+      <td>20</td>
+      <td>1454</td>
+      <td>326</td>
+      <td>624</td>
+      <td>262</td>
+      <td>1.9250</td>
+      <td>65500</td>
+      <td>1.244275</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>-124.26</th>
+      <td>40.58</td>
+      <td>52</td>
+      <td>2217</td>
+      <td>394</td>
+      <td>907</td>
+      <td>369</td>
+      <td>2.3571</td>
+      <td>111400</td>
+      <td>1.067751</td>
+    </tr>
+    <tr>
+      <th>-124.27</th>
+      <td>40.69</td>
+      <td>36</td>
+      <td>2349</td>
+      <td>528</td>
+      <td>1194</td>
+      <td>465</td>
+      <td>2.5179</td>
+      <td>79000</td>
+      <td>1.135484</td>
+    </tr>
+    <tr>
+      <th>-124.30</th>
+      <td>41.84</td>
+      <td>17</td>
+      <td>2677</td>
+      <td>531</td>
+      <td>1244</td>
+      <td>456</td>
+      <td>3.0313</td>
+      <td>103600</td>
+      <td>1.164474</td>
+    </tr>
+    <tr>
+      <th>-124.30</th>
+      <td>41.80</td>
+      <td>19</td>
+      <td>2672</td>
+      <td>552</td>
+      <td>1298</td>
+      <td>478</td>
+      <td>1.9797</td>
+      <td>85800</td>
+      <td>1.154812</td>
+    </tr>
+    <tr>
+      <th>-124.35</th>
+      <td>40.54</td>
+      <td>52</td>
+      <td>1820</td>
+      <td>300</td>
+      <td>806</td>
+      <td>270</td>
+      <td>3.0147</td>
+      <td>94600</td>
+      <td>1.111111</td>
+    </tr>
+  </tbody>
+</table>
+<p>17000 rows × 9 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-ee8211da-5bdc-4c0e-8f06-7afd2d023519')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-ee8211da-5bdc-4c0e-8f06-7afd2d023519 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-ee8211da-5bdc-4c0e-8f06-7afd2d023519');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    <div id="df-df0bc45d-702f-413f-a2f6-c35763771981">
+      <button class="colab-df-quickchart" onclick="quickchart('df-df0bc45d-702f-413f-a2f6-c35763771981')"
+                title="Suggest charts"
+                style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+      <script>
+        async function quickchart(key) {
+          const quickchartButtonEl =
+            document.querySelector('#' + key + ' button');
+          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+          quickchartButtonEl.classList.add('colab-df-spinner');
+          try {
+            const charts = await google.colab.kernel.invokeFunction(
+                'suggestCharts', [key], {});
+          } catch (error) {
+            console.error('Error during call to suggestCharts:', error);
+          }
+          quickchartButtonEl.classList.remove('colab-df-spinner');
+          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+        }
+        (() => {
+          let quickchartButtonEl =
+            document.querySelector('#df-df0bc45d-702f-413f-a2f6-c35763771981 button');
+          quickchartButtonEl.style.display =
+            google.colab.kernel.accessAllowed ? 'block' : 'none';
+        })();
+      </script>
+    </div>
+
+  <div id="id_8e5c1698-40fe-4ff0-a532-8c7247c1df38">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('df_excel_new_index')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_8e5c1698-40fe-4ff0-a532-8c7247c1df38 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('df_excel_new_index');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="the-iterrows-method">
+<h2><em><strong>The iterrows() Method</strong></em><a class="headerlink" href="#the-iterrows-method" title="Link to this heading">#</a></h2>
+<section id="the-iterrows-method-of-pandas-iterates-over-the-rows-of-a-dataframe-and-returns-a-tuple-of-the-row-s-values-the-example">
+<h3>The <font color='green'>iterrows()</font> method of Pandas iterates over the rows of a DataFrame and returns a tuple of the row’s values.  The example:<a class="headerlink" href="#the-iterrows-method-of-pandas-iterates-over-the-rows-of-a-dataframe-and-returns-a-tuple-of-the-row-s-values-the-example" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">longitude_latitude</span><span class="o">=</span><span class="p">[(</span><span class="n">longitude</span><span class="p">,</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">longitude</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">longitude_latitude</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="displays-the-longitude-amd-the-latitude-of-the-first-five-rows-as-a-list-of-tuples-the-index-is-assigned-to-longitude-and-latitudge-to-the-latitude-column-of-df-excel-new-index-the-list-longitude-latitude-is-created-with-list-comprehension-of-the-two-values">
+<h3>Displays the longitude amd the latitude of the first five rows as a list of tuples.  The index is assigned to longitude and latitudge to the ‘latitude’ column of <font color='green'>df_excel_new_index</font>.  The list <font color='green'>longitude_latitude</font> is created with list comprehension of the two values.<a class="headerlink" href="#displays-the-longitude-amd-the-latitude-of-the-first-five-rows-as-a-list-of-tuples-the-index-is-assigned-to-longitude-and-latitudge-to-the-latitude-column-of-df-excel-new-index-the-list-longitude-latitude-is-created-with-list-comprehension-of-the-two-values" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longitude_latitude</span><span class="o">=</span><span class="p">[(</span><span class="n">longitude</span><span class="p">,</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">longitude</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">longitude_latitude</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(-114.31, np.float64(34.19)),
+ (-114.47, np.float64(34.4)),
+ (-114.56, np.float64(33.69)),
+ (-114.57, np.float64(33.64)),
+ (-114.57, np.float64(33.57))]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pandas-to-timestamp-method">
+<h2><em><strong>Pandas To Timestamp() Method</strong></em><a class="headerlink" href="#pandas-to-timestamp-method" title="Link to this heading">#</a></h2>
+<section id="the-pandas-timestamp-is-the-pandas-equivalent-of-datetime-and-includes-some-useful-attributes-the-example-converts-a-datetime-to-a-timestamp-and-printing-both-values-and-several-attributes-of-pandas-timestamp-6">
+<h3>The Pandas <font color='green'>Timestamp()</font> is the Pandas equivalent of <font color='green'>datetime</font> and includes some useful attributes.  The example converts a <font color='green'>datetime</font> to a <font color='green'>Timestamp</font> and printing both values and several attributes of Pandas <font color='green'>Timestamp()</font>.<span class="math notranslate nohighlight">\(^{6}\)</span><a class="headerlink" href="#the-pandas-timestamp-is-the-pandas-equivalent-of-datetime-and-includes-some-useful-attributes-the-example-converts-a-datetime-to-a-timestamp-and-printing-both-values-and-several-attributes-of-pandas-timestamp-6" title="Link to this heading">#</a></h3>
+<hr class="docutils" />
+<section id="for-introduction-to-the-datetime-module-see-manipulating-dates">
+<h4>$^{6} For introduction to the datetime module see <a href='https://colab.research.google.com/drive/1ebkxsEmh7S0LgH3HUjF6vwy59sxbRcIk?usp=drive_link'>Manipulating Dates</a>.<a class="headerlink" href="#for-introduction-to-the-datetime-module-see-manipulating-dates" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">date_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span>
+<span class="n">pandas_time_stamp</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">date_time</span><span class="p">)</span>
+<span class="n">pandas_time_stamp</span><span class="p">,</span><span class="n">date_time</span><span class="p">,</span><span class="n">pandas_time_stamp</span><span class="o">.</span><span class="n">day_of_week</span><span class="p">,</span><span class="n">pandas_time_stamp</span><span class="o">.</span><span class="n">is_month_end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Timestamp(&#39;2025-01-21 00:00:00&#39;),
+ datetime.datetime(2025, 1, 21, 0, 0),
+ 1,
+ False)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="pandas-duplicated-method">
+<h2><em><strong>Pandas duplicated() Method</strong></em><a class="headerlink" href="#pandas-duplicated-method" title="Link to this heading">#</a></h2>
+<section id="duplicated-rows-of-a-dataframe-or-values-of-a-series-can-be-determined-with-the-duplicated-method-by-default-the-first-occurence-of-a-duplicated-value-is-marked-as-false-and-all-others-are-marked-as-true-here-the-method-is-applied-to-the-index-of-the-first-ten-rows-of-df-excel-new-index">
+<h3>Duplicated rows of a DataFrame or values of a Series can be determined with the <font color='green'>duplicated()</font> method.  By default the first occurence of a duplicated value is marked as False and all others are marked as True.  Here the method is applied to the index of the first ten rows of <font color='green'>df_excel_new_index</font>.<a class="headerlink" href="#duplicated-rows-of-a-dataframe-or-values-of-a-series-can-be-determined-with-the-duplicated-method-by-default-the-first-occurence-of-a-duplicated-value-is-marked-as-false-and-all-others-are-marked-as-true-here-the-method-is-applied-to-the-index-of-the-first-ten-rows-of-df-excel-new-index" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False,  True, False,  True, False,  True,
+       False])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([-114.31, -114.47, -114.56, -114.57, -114.57, -114.58, -114.58, -114.59,
+       -114.59,  -114.6],
+      dtype=&#39;float64&#39;, name=&#39;longitude&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="negate-a-pandas-value-with">
+<h2><em><strong>Negate A Pandas Value With ~</strong></em><a class="headerlink" href="#negate-a-pandas-value-with" title="Link to this heading">#</a></h2>
+<section id="if-you-want-to-only-keep-unique-values-it-makes-sense-to-negate-the-values-returned-from-duplicated">
+<h3>If you want to only keep unique values, it makes sense to negate the values returned from <font color='green'>duplicated()</font>.<a class="headerlink" href="#if-you-want-to-only-keep-unique-values-it-makes-sense-to-negate-the-values-returned-from-duplicated" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_occurence</span><span class="o">=</span><span class="p">(</span><span class="o">~</span><span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_excel_new_index</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">first_occurence</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([-114.31, -114.47, -114.56, -114.57, -114.58, -114.59, -114.6], dtype=&#39;float64&#39;, name=&#39;longitude&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "PatrickJHess/demo_book",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown-notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-dataframe-reminiscent-of-a-spreadsheet-is-the-primary-object-in-pandas-data-is-organized-into-tables-with-columns-and-rows-that-can-be-manipulated-similar-to-a-spreadsheet-depending-on-your-notebook-you-may-need-to-install-pandas-before-importing-it">A DataFrame, reminiscent of a spreadsheet, is the primary object in Pandas. Data is organized into tables with columns and rows, that can be manipulated similar to a spreadsheet. Depending on your notebook, you may need to install Pandas before importing it.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-example-code-cell-below-uses-a-try-and-except-code-block-to-import-pandas-and-assigns-it-the-common-alias-pd-1">The example code cell below uses a <font color="green">try</font> and <font color="green">except</font> code block to import Pandas and assigns<br/> it the common alias <font color="green">pd</font>.<span class="math notranslate nohighlight">\(^{1}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-introduction-to-try-and-except-code-blocks-the-notebook-control-statements-in-the-library"><span class="math notranslate nohighlight">\(^{1}\)</span> An introduction to <font color="green">try</font> and <font color="green">except</font> code blocks <a href="https://colab.research.google.com/drive/1_U6FtHZjbjMtBRYrULipP2jnwKis4qgM?usp=sharing">The Notebook Control Statements In The Library</a></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-or-instantiating-a-dataframe"><em><strong>Creating Or Instantiating A DataFrame</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-bare-bones-dataframe"><em><strong>A Bare Bones DataFrame</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-pandas-method-demonstrated-is-dataframe-the-required-arguments-of-the-method-are-the-data-that-must-be-an-iterable-e-g-a-list-or-a-dictionary-2-here-the-dataframe-df-bare-bones-is-created-with-two-simple-lists-x-and-y">The first Pandas method demonstrated is <font color="green">DataFrame()</font>.  The required arguments of the method are<br/> the data that must be an iterable: e.g. a list or a dictionary.<span class="math notranslate nohighlight">\(^{2}\)</span>  Here the DataFrame <font color="green">df_bare_bones</font> is <br/>created with two simple lists: <font color="green">x</font> and <font color="green">y</font>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#if-you-need-a-little-help-with-this-concept-check-out-the-notebooks-lists-or-dictionaires"><span class="math notranslate nohighlight">\(^{1.}\)</span> If you need a little help with this concept check out the notebooks Lists or Dictionaires</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-labels-for-columns-and-rows"><em><strong>Adding Labels For Columns And Rows</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-bare-bones-is-a-table-but-it-s-not-very-useful-the-first-improvement-is-to-provide-labels-for-the-columns-and-the-rows-both-are-attributes-of-df-bare-bones-and-the-values-have-been-assigned-by-pandas-the-column-attribute-is-referred-to-as-columns-and-the-row-attribute-as-index-as-with-all-objects-these-attributes-can-be-accessed-using-a-dot-after-the-object-s-name-in-this-case-the-columns-attribute-is-assigned-the-list-first-second-third-and-the-rows-attribute-is-assigned-the-list-x-y"><font color="green">df_bare_bones</font> is a table, but it’s not very useful.  The first improvement is to provide labels for the<br/> columns and the rows.  Both are attributes of <font color="green">df_bare_bones</font> and the values have been<br/> assigned by Pandas.  The column attribute is referred to as <font color="green">columns</font> and the row attribute<br/> as <font color="green">index</font>. As with all objects, these attributes can be accessed using a dot after the<br/> object’s name. In this case, the <font color="green">columns</font> attribute is assigned the list <font color="green">[‘First’, ‘Second’, ‘Third’]</font>,<br/> and the <font color="green">rows</font> attribute is assigned the list <font color="green">[‘x’, ‘y’]</font>.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#including-the-labels-as-arguments-of-dataframe"><em><strong>Including The Labels As Arguments Of DataFrame()</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#here-the-values-assigned-to-the-columns-and-index-attributes-are-arguments-of-the-method-because-the-attributes-are-not-variables-of-the-notebook-the-names-assigned-may-be-the-same-as-the-attributes">Here the values assigned to the <font color="green">columns</font> and <font color="green">index</font> attributes are arguments of the method.<br/>  Because the attributes are not variables of the notebook, the names assigned may be the<br/> same as the attributes.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterating-through-the-columns-and-index"><em><strong>Iterating Through The Columns And Index</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-values-of-rows-and-columns-can-be-accessed-by-iterating-through-a-dataframe-s-columns-or-index-here-the-values-of-the-labels-of-columns-and-index-are-printed">The values of rows and columns can be accessed by iterating through a DataFrame’s <font color="green">columns</font><br/> or <font color="green">index</font>.  Here the values of the labels of <font color="green">columns</font> and <font color="green">index</font> are printed.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-loc-and-iloc-attributes"><em><strong>The loc and iloc Attributes</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-row-of-a-dataframe-is-identified-with-the-loc-or-iloc-attribute-the-loc-attribute-uses-the-value-of-the-index-in-our-example-x-or-y-the-iloc-attribute-uses-the-location-of-the-row-in-the-index-in-our-example-0-or-1">A row of A DataFrame is identified with the <font color="green">loc</font> or <font color="green">iloc</font> attribute.  The <font color="green">loc</font> attribute uses<br/> the value of the <font color="green">index</font>; in our example ‘x’ or ‘y’.  The <font color="green">iloc</font> attribute uses the location of the row<br/> in the <font color="green">index</font>; in our example, 0 or 1.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#in-the-next-code-cell-the-values-of-first-column-are-printed-by-iterating-through-the-index-with-loc">In the next code cell the values of ‘First’ column are printed by iterating through the index with loc.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loc-attribute"><em><strong>loc Attribute</strong></em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iloc-example-uses-the-index-values-of-0-and-1-to-print-the-value-of-second-column-the-iloc-attribute-requires-the-enumerate-function-of-python-that-keeps-track-of-the-number-of-iterations-3-the-row-is-then-fixed-with-loc-and-the-columns-are-iterated-through-to-show-all-the-values-of-the-list-x">The <font color="green">iloc</font> example uses the <font color="green">index</font> values of 0 and 1 to print the value of ‘Second’ column.<br/>  The <font color="green">iloc</font> attribute requires the <font color="green">enumerate</font> function of Python that keeps track of the number<br/> of iterations.<span class="math notranslate nohighlight">\(^{3}\)</span>  The row is then fixed with <font color="green">loc</font> and the columns are iterated through to show all<br/> the values of the list <font color="green">x</font>.</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#gemini-provides-a-nice-explanation-of-the-enumerate-function"><span class="math notranslate nohighlight">\(^{3.}\)</span> Gemini provides a nice explanation of the <font color="green">enumerate</font> function.</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iloc-attribute"><em><strong>iloc Attribute</strong></em></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-a-row-with-an-index-value"><em><strong>Locate A Row With An Index Value</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-get-indexer-method-locates-the-row-number-of-the-index-from-a-value-if-the-label-is-not-present-minus-one-is-returned-the-value-must-be-an-iterable-here-it-is-a-list">The <font color="green">get_indexer()</font> method locates the row number of the <font color="green">index</font> from a value.  If the label is not present, minus one is returned. The value must be an iterable.  Here it is a list.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-the-row-with-loc-and-iterating-through-the-columns"><em><strong>Fixing The Row With <font color="green">loc</font> And Iterating Through The Columns.</strong></em></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-dataframe-from-a-dictionary"><em><strong>Create A DataFrame From A Dictionary</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#it-s-convenient-to-create-a-dataframe-from-a-dictionary-dictionaries-are-key-value-pairs-4-the-keys-are-interpreted-as-column-names-and-the-values-are-the-data-assigned-to-those-columns-in-this-example-the-value-of-x-and-value-of-y-columns-are-assigned-the-lists-x-and-y-respectively">It’s convenient to create a DataFrame from a dictionary.  Dictionaries are key-value pairs.<span class="math notranslate nohighlight">\(^{4}\)</span><br/> The keys are interpreted as column names, and the values are the data assigned to those columns.<br/> In this example, the ‘Value Of X’ and ‘Value Of Y’ columns are assigned the lists <font color="green">x</font> and <font color="green">y</font>, respectively.</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#for-an-introduction-to-dictionaries-see-dictionaries-notebook"><span class="math notranslate nohighlight">\(^{4}\)</span> For an introduction to dictionaries see <a href="https://colab.research.google.com/drive/1xGcImigTwgiAlYBHdHG44KH3i3IS6Prr?usp=sharing">Dictionaries Notebook</a>.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-column"><em><strong>Add A Column</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assign-a-list-to-the-new-column-values-of-z"><em><strong>Assign A List To The New Column ‘Values of z’</strong></em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assign-three-plus-the-column-values-of-y-to-the-new-column-values-of-z"><em><strong>Assign Three Plus The Column ‘Values of y’ To The New Column ‘Values of z’</strong></em></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-transpose"><em><strong>The Transpose</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#because-the-dataframe-method-interprets-the-dictionary-keys-as-column-names-df-dict-is-the-transpose-of-df-bare-bones-to-that-end-the-index-of-df-dict-is-assigned-the-columns-list-that-was-assigned-as-the-columns-of-df-bare-bones-the-pandas-method-transpose-transposes-a-dataframe-but-does-not-replace-the-values-to-keep-the-transposed-dataframe-it-must-be-assigned-to-another-variable-the-transpose-method-may-also-be-accessed-with-a-capital-t">Because the <font color="green">DataFrame()</font> method interprets the dictionary keys as column names, <font color="green">df_dict</font><br/> is the transpose of <font color="green">df_bare_bones</font>.  To that end, the index of <font color="green">df_dict</font> is assigned the <font color="green">columns</font><br/> list that was assigned as the <font color="green">columns</font> of <font color="green">df_bare_bones</font>.  The Pandas method <font color="green">transpose()</font><br/> transposes a DataFrame but does not replace the values.  To keep the transposed <font color="green">DataFrame</font><br/> it must be assigned to another variable. The <font color="green">transpose</font> method may also be accessed with a capital <font color="green">T</font>.</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#transpose-with-method-transpose-t-for-shorthand"><em><strong>Transpose With Method <font color="green">transpose()</font>, <font color="green">T</font> For Shorthand.</strong></em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes-csv-and-excel-files"><em><strong>DataFrames, CSV, And Excel Files</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe-with-a-csv-file"><em><strong>Creating A DataFrame With A CSV File</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#colab-notebooks-contain-sample-data-within-the-sample-data-folder-in-this-instance-the-data-from-the-csv-file-california-housing-train-csv-is-transformed-into-a-dataframe-using-the-pandas-read-csv-method-the-sole-necessary-argument-for-this-method-is-the-file-path-from-dropbox">Colab notebooks contain sample data within the ‘sample_data’ folder. In this instance,<br/> the data from the csv file ‘california_housing_train.csv’ is transformed into a DataFrame<br/> using the Pandas <font color="green">read_csv()</font> method. The sole necessary argument for this method is<br/> the file path from DropBox.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-file-is-then-assigned-to-df-csv-and-the-initial-ten-rows-are-displayed-by-slicing-the-index-using-the-iloc-attribute">The file is then assigned to <font color="green">df_csv</font>, and the initial ten rows are displayed by slicing the <font color="green">index</font><br/> using the <font color="green">iloc</font> attribute..</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The file is then assigned to <font color="green">df_csv</font>, and the initial ten rows are displayed by slicing the <font color="green">index</font><br/> using the <font color="green">iloc</font> attribute.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-excel-file-from-a-dataframe-and-back-to-a-dataframe"><em><strong>Creating An Excel File From A DataFrame And Back To A DataFrame</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-to-excel-method-converts-a-dataframe-into-an-excel-file-this-example-uses-the-required-argument-file-path-and-specifies-the-file-name-as-sample-xlsx-the-file-will-be-located-in-the-notebook-s-root-directory-contents-additionally-the-optional-arguments-sheet-name-and-index-are-used-the-sheet-name-is-assigned-first-sheet-and-the-index-is-set-to-false-preventing-the-df-csv-index-from-being-included-in-first-sheet-the-resulting-excel-file-is-then-converted-back-into-a-dataframe-df-excel-and-the-first-ten-rows-are-displayed-by-slicing-without-using-iloc-the-results-are-identical-to-df-csv">The <font color="green">to_excel()</font> method converts a DataFrame into an Excel file. This example uses the<br/> required argument file path, and specifies the file name as <font color="green">sample.xlsx</font>. The file will be<br/> located in the notebook’s root directory ‘/contents.’ Additionally, the optional arguments<br/> <font color="green">sheet_name</font> and <font color="green">index</font> are used. The <font color="green">sheet_name</font> is assigned ‘First Sheet,’ and the <font color="green">index</font><br/> is set to False, preventing the <font color="green">df_csv</font> index from being included in ‘First Sheet.’ The resulting<br/> Excel file is then converted back into a DataFrame (<font color="green">df_excel</font>), and the first ten rows are<br/> displayed by slicing without using <font color="green">iloc</font>.  The results are identical to <font color="green">df_csv</font>.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-column-the-index"><em><strong>Making A Column The Index</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-set-index-method-makes-a-column-an-index-one-of-the-arguments-of-the-method-is-inplace-that-defaults-to-false-if-assigned-true-the-dataframe-is-permanently-changed-here-it-is-assigned-to-a-new-dataframe">The <font color="green">set_index()</font> method makes a column an index. One of the arguments of the method<br/> is <font color="green">inplace</font> that defaults to False.  If assigned True, the DataFrame is permanently changed.<br/>  Here it is assigned to a new DataFrame.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-to-numpy"><em><strong>Pandas To Numpy</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-method-to-numpy-converts-a-dataframe-to-a-numpy-array-all-values-of-the-dataframe-are-converted-to-a-single-type-unlike-dataframes-numpy-arrays-are-not-indexed-the-value-for-the-114-56-latitude-is-accessed-with-the-iloc-attribute">The method <font color="green">to_numpy()</font> converts a DataFrame to a NumPy array. All values of the DataFrame are converted to a single type.  Unlike DataFrames, NumPy arrays are not indexed. The value for the -114.56 latitude is accessed with the <font color="green">iloc</font> attribute.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-apply-method"><em><strong>The apply() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-apply-function-in-pandas-is-a-versatile-method-used-to-apply-a-function-along-an-axis-of-a-dataframe-or-to-the-values-of-a-series-it-enables-element-wise-row-wise-or-column-wise-operations-using-custom-or-built-in-functions-avoiding-iterating-through-rows-or-columns">The <font color="green">apply()</font> function in Pandas is a versatile method used to apply a function along an axis of a DataFrame or to the values of a Series. It enables element-wise, row-wise, or column-wise operations using custom or built-in functions avoiding iterating through rows or columns.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-average-bedrooms-function-calculates-the-average-number-of-bedrooms-from-the-total-number-of-bedrooms-and-households">The <font color="green">average_bedrooms()</font> function calculates the average number of bedrooms from the total number of bedrooms and households.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#average-bedrooms-is-applied-to-each-longitude-row-of-the-dataframe-df-excel-new-using-the-anonymous-lambda-function-allows-the-assignment-of-values-in-each-row-as-arguments-of-the-function-5"><font color="green">average_bedrooms()</font> is applied to each longitude (row) of the DataFrame <font color="green">df_excel_new</font>. Using the anonymous lambda function allows the assignment of values in each row as arguments of the function.<span class="math notranslate nohighlight">\(^{5}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-this-example-the-apply-method-has-the-same-effects-as-direct-operation-on-the-columns">In this example, the <font color="green">apply()</font> method has the same effects as direct operation on the columns.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-a-discussion-of-lambda-functions-see-functions"><span class="math notranslate nohighlight">\(^{5}\)</span> For a discussion of lambda functions see <a href="https://colab.research.google.com/drive/125oeGZS-dlF4namW00LLREKElsr9dxsb?usp=drive_link"> Functions</a>.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iterrows-method"><em><strong>The iterrows() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iterrows-method-of-pandas-iterates-over-the-rows-of-a-dataframe-and-returns-a-tuple-of-the-row-s-values-the-example">The <font color="green">iterrows()</font> method of Pandas iterates over the rows of a DataFrame and returns a tuple of the row’s values.  The example:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displays-the-longitude-amd-the-latitude-of-the-first-five-rows-as-a-list-of-tuples-the-index-is-assigned-to-longitude-and-latitudge-to-the-latitude-column-of-df-excel-new-index-the-list-longitude-latitude-is-created-with-list-comprehension-of-the-two-values">Displays the longitude amd the latitude of the first five rows as a list of tuples.  The index is assigned to longitude and latitudge to the ‘latitude’ column of <font color="green">df_excel_new_index</font>.  The list <font color="green">longitude_latitude</font> is created with list comprehension of the two values.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-to-timestamp-method"><em><strong>Pandas To Timestamp() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pandas-timestamp-is-the-pandas-equivalent-of-datetime-and-includes-some-useful-attributes-the-example-converts-a-datetime-to-a-timestamp-and-printing-both-values-and-several-attributes-of-pandas-timestamp-6">The Pandas <font color="green">Timestamp()</font> is the Pandas equivalent of <font color="green">datetime</font> and includes some useful attributes.  The example converts a <font color="green">datetime</font> to a <font color="green">Timestamp</font> and printing both values and several attributes of Pandas <font color="green">Timestamp()</font>.<span class="math notranslate nohighlight">\(^{6}\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-introduction-to-the-datetime-module-see-manipulating-dates">$^{6} For introduction to the datetime module see <a href="https://colab.research.google.com/drive/1ebkxsEmh7S0LgH3HUjF6vwy59sxbRcIk?usp=drive_link">Manipulating Dates</a>.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-duplicated-method"><em><strong>Pandas duplicated() Method</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicated-rows-of-a-dataframe-or-values-of-a-series-can-be-determined-with-the-duplicated-method-by-default-the-first-occurence-of-a-duplicated-value-is-marked-as-false-and-all-others-are-marked-as-true-here-the-method-is-applied-to-the-index-of-the-first-ten-rows-of-df-excel-new-index">Duplicated rows of a DataFrame or values of a Series can be determined with the <font color="green">duplicated()</font> method.  By default the first occurence of a duplicated value is marked as False and all others are marked as True.  Here the method is applied to the index of the first ten rows of <font color="green">df_excel_new_index</font>.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negate-a-pandas-value-with"><em><strong>Negate A Pandas Value With ~</strong></em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-you-want-to-only-keep-unique-values-it-makes-sense-to-negate-the-values-returned-from-duplicated">If you want to only keep unique values, it makes sense to negate the values returned from <font color="green">duplicated()</font>.</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
